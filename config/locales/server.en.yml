@@ -1,0 +1,16 @@
+en:
+  site_settings:
+    scheduled_readonly_enabled: "Enable Scheduled Readonly plugin."
+    scheduled_readonly_timezone: "Timezone for Scheduled Readonly plugin."
+    scheduled_readonly_event_enabled: "Enable plugin for holidays."
+    scheduled_readonly_event_start_date: "Holiday start date (YYYY-MM-DD)."
+    scheduled_readonly_event_start_time: "Holiday start time (HH:MM, use 24h clock)."
+    scheduled_readonly_event_end_date: "Holiday end date (YYYY-MM-DD)."
+    scheduled_readonly_event_end_time: "Holiday end time (HH:MM, use 24h clock)."
+    scheduled_readonly_event_banner_text: "Banner to show during holiday."
+    scheduled_readonly_weekend_enabled: "Enable plugin for weekends."
+    scheduled_readonly_weekend_start_time: "Weekend start time (HH:MM, use 24h clock)."
+    scheduled_readonly_weekend_end_time: "Weekend end time (HH:MM, use 24h clock)."
+    scheduled_readonly_weekend_banner_text: "Banner to show during weekend."
+    scheduled_readonly_weekend_start_weekday: "Weekday for weekend start (0=Sunday...6=Saturday)."
+    scheduled_readonly_weekend_end_weekday: "Weekday for weekend end (0=Sunday...6=Saturday)."

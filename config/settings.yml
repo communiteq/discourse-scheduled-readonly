@@ -1,0 +1,33 @@
+plugins:
+  scheduled_readonly_enabled:
+    default: false
+  scheduled_readonly_timezone:
+    default: "Eastern Time (US & Canada)"
+  scheduled_readonly_event_enabled:
+    default: false
+  scheduled_readonly_event_start_date:
+    default: "2021-12-31"
+  scheduled_readonly_event_start_time:
+    default: "17:00"
+  scheduled_readonly_event_end_date:
+    default: "2022-01-01"
+  scheduled_readonly_event_end_time:
+    default: "08:00"
+  scheduled_readonly_event_banner_text:
+    default: "Happy New Year!"
+  scheduled_readonly_weekend_enabled:
+    default: false
+  scheduled_readonly_weekend_start_time:
+    default: "17:00"
+  scheduled_readonly_weekend_end_time:
+    default: "06:00"
+  scheduled_readonly_weekend_banner_text:
+    default: "It's weekend!"
+  scheduled_readonly_weekend_start_weekday:
+    default: 5
+  scheduled_readonly_weekend_end_weekday:
+    default: 1
+  scheduled_readonly_notice:
+    default: ''
+    hidden: true
+    client: true
