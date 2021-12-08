@@ -31,3 +31,5 @@ plugins:
     default: ''
     hidden: true
     client: true
+  scheduled_readonly_prevent_posting:
+    default: false

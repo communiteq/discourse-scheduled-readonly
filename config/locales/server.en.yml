@@ -14,3 +14,4 @@ en:
     scheduled_readonly_weekend_banner_text: "Banner to show during weekend."
     scheduled_readonly_weekend_start_weekday: "Weekday for weekend start (0=Sunday...6=Saturday)."
     scheduled_readonly_weekend_end_weekday: "Weekday for weekend end (0=Sunday...6=Saturday)."
+    scheduled_readonly_prevent_posting: "Use the Prevent Posting plugin instead of full read only mode."

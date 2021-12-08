@@ -56,10 +56,14 @@ module Jobs
       Time.zone = tz
 
       if err
-        Rails.logger.warn("Error, so disable readonly mode")
+        Rails.logger.error("Error, so disable readonly mode")
         SiteSetting.scheduled_readonly_notice = ''
-        Discourse.disable_readonly_mode if (Discourse.readonly_mode?)
-        MessageBus.publish('/refresh_client', 'clobber')
+        if SiteSetting.scheduled_readonly_prevent_posting
+          SiteSetting.prevent_posting_enabled = false if SiteSetting.respond_to?(:prevent_posting_enabled)
+        else
+          Discourse.disable_readonly_mode if (Discourse.readonly_mode?)
+          MessageBus.publish('/refresh_client', 'clobber')
+        end
         return
       end
 
@@ -68,16 +72,38 @@ module Jobs
       end
 
       if (must_ro_e || must_ro_w) 
-        if (!Discourse.readonly_mode?)
-          Rails.logger.warn("Enable readonly mode #{ro_message}")
-          Discourse.enable_readonly_mode 
-          MessageBus.publish('/refresh_client', 'clobber')
+        if SiteSetting.scheduled_readonly_prevent_posting
+          if SiteSetting.respond_to?(:prevent_posting_enabled)
+            if !SiteSetting.prevent_posting_enabled
+              Rails.logger.warn("Enable prevent posting mode #{ro_message}")
+              SiteSetting.prevent_posting_enabled = true
+            end
+          else
+            Rails.logger.error("The prevent posting plugin is not installed")
+          end
+        else
+          if (!Discourse.readonly_mode?)
+            Rails.logger.warn("Enable readonly mode #{ro_message}")
+            Discourse.enable_readonly_mode 
+            MessageBus.publish('/refresh_client', 'clobber')
+          end
         end
       else
-        if (Discourse.readonly_mode?)
-          Rails.logger.warn("Disable readonly mode")
-          Discourse.disable_readonly_mode 
-          MessageBus.publish('/refresh_client', 'clobber')
+        if SiteSetting.scheduled_readonly_prevent_posting
+          if SiteSetting.respond_to?(:prevent_posting_enabled) 
+            if SiteSetting.prevent_posting_enabled
+              Rails.logger.warn("Disable prevent posting mode #{ro_message}")
+              SiteSetting.prevent_posting_enabled = false
+            end
+          else
+            Rails.logger.error("The prevent posting plugin is not installed")
+          end
+        else
+          if (Discourse.readonly_mode?)
+            Rails.logger.warn("Disable readonly mode")
+            Discourse.disable_readonly_mode 
+            MessageBus.publish('/refresh_client', 'clobber')
+          end
         end
       end
     end
