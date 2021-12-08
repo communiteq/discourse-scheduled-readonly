@@ -50,8 +50,6 @@ module Jobs
 
       rescue => e
         Rails.logger.error("Exception in scheduled_readonly #{e.message}")
-        STDERR.puts e
-        STDERR.puts e.backtrace
         err = true
       end
 
