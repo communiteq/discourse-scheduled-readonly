@@ -59,7 +59,7 @@ module Jobs
         Rails.logger.warn("Error, so disable readonly mode")
         SiteSetting.scheduled_readonly_notice = ''
         Discourse.disable_readonly_mode if (Discourse.readonly_mode?)
-        MessageBus.publish('/global/asset-version', 'clobber')
+        MessageBus.publish('/refresh_client', 'clobber')
         return
       end
 
@@ -71,13 +71,13 @@ module Jobs
         if (!Discourse.readonly_mode?)
           Rails.logger.warn("Enable readonly mode #{ro_message}")
           Discourse.enable_readonly_mode 
-          MessageBus.publish('/global/asset-version', 'clobber')
+          MessageBus.publish('/refresh_client', 'clobber')
         end
       else
         if (Discourse.readonly_mode?)
           Rails.logger.warn("Disable readonly mode")
           Discourse.disable_readonly_mode 
-          MessageBus.publish('/global/asset-version', 'clobber')
+          MessageBus.publish('/refresh_client', 'clobber')
         end
       end
     end
