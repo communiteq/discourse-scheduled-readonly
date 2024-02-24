@@ -3,7 +3,7 @@
 # name: discourse-scheduled-readonly
 # about: schedule readonly moments during the weekend and holidays
 # version: 1.0
-# authors: richard@discoursehosting.com
+# authors: Communiteq
 # url: https://github.com/communiteq/discourse-scheduled-readonly
 
 enabled_site_setting :scheduled_readonly_enabled
